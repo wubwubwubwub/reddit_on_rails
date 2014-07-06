@@ -1,1 +1,10 @@
 <h2> I Am a Homepage! </h2>
+
+<ul>
+  <% @links.each do |link| %>
+    <li><%= link_to "#{link.title}", "#{link.url}" %>
+  <% end %>
+</ul>
+
+
+<%= link_to 'Add a link', new_link_path %>
