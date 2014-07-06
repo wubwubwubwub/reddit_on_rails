@@ -1,5 +1,7 @@
 <h2> I Am a Homepage! </h2>
 
+The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
+
 <ul>
   <% @links.each do |link| %>
     <li><%= link_to "#{link.title}", "#{link.url}" %>
