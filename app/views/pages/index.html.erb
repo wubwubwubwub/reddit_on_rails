@@ -2,11 +2,26 @@
 
 The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
 
+
 <ul>
-  <% @links.each do |link| %>
-    <li><%= link_to "#{link.title}", link_path(link.id) %>
-  <% end %>
+<% if @links.empty? %>
+  <%= "no links!"%>
+<% else %>
+    <% @links.each do |link| %>
+      <li><%= link_to "#{link.title}", link_path(link.id) %>
+    <% end %>
+<% end %>
 </ul>
+<br />
+<%= will_paginate @links %>
 
 
-<%= link_to 'Add a link', new_link_path %>
+
+
+
+
+<%#= link_to 'Add a link', new_link_path %>
+
+
+
+
