@@ -2,7 +2,13 @@
 
 <ul>
   <li><%= @link.title %></li>
-  <li><%= @link.url %></li>
+  <li><%= link_to "#{@link.url}", @link.url %></li>
+  <% if @link.user.nil? %>
+    <li><%= "No User!" %></li>
+  <% else %>
+    <li><%= "Username: #{@link.user.username}" %></li>
+    <li><%= "User: #{@link.user.email}"%></li>
+  <% end %>
 </ul>
 
 <%= link_to 'See all the links', root_path %>

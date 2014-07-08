@@ -4,7 +4,7 @@ The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
 
 <ul>
   <% @links.each do |link| %>
-    <li><%= link_to "#{link.title}", "#{link.url}" %>
+    <li><%= link_to "#{link.title}", link_path(link.id) %>
   <% end %>
 </ul>
 

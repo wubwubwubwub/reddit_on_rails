@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   
   def show
-    @link = Link.find(params[:id])
+    @link = Link.includes(:user).find(params[:id])
   end
   
   def new
