@@ -1,4 +1,4 @@
-<h2> I Am a Homepage! </h2>
+<h2> This is what Reddit on Rails would look like.. </h2>
 
 The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
 
@@ -8,7 +8,10 @@ The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
   <%= "no links!"%>
 <% else %>
     <% @links.each do |link| %>
-      <li><%= link_to "#{link.title}", link_path(link.id) %> | <%= link_to 'comments', link %>
+      <li><h4><%= link_to truncate("#{link.title}", length: 50, separator: ' '), link_path(link.id) %></h4></li>
+        <ul>
+          <li><%= link_to 'comments', link %> | <%= "submitted #{time_ago_in_words(link.created_at)} ago by #{link.user.username}" %></li>
+        </ul>
     <% end %>
 <% end %>
 </ul>
