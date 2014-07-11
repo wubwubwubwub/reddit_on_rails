@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
   
   def show
-    @link = Link.includes(:user).find(params[:id])
+    @link = Link.find(params[:id])
+    @comments = Comment.includes(:user).where(link_id: params[:id])
   end
   
   def new
