@@ -8,7 +8,7 @@
   <% else %>
     <li><%= "Username: #{@link.user.username}" %></li>
     <li><%= "User: #{@link.user.email}"%></li>
-  <% end %>
+    <% end %>
 </ul>
 
 <h3>Comments</h3>
@@ -21,4 +21,37 @@
   <% end %>
 </ul>
 
+
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %> 
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being stored: </h2>
+  
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message, placeholder: "Add a comment" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <%= f.hidden_field :link_id, value: @link.id %>
+
+<% end %>
+        
+
+
+
+
+
+
+
+<br />
 <%= link_to 'See all the links', root_path %>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   #   resources :products
   resources :pages
   resources :links
+  resources :comments
 
   # Example resource route with options:
   #   resources :products do
