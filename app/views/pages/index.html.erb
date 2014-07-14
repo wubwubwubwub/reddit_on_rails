@@ -1,4 +1,4 @@
-<h2> This is what Reddit on Rails would look like..saz </h2>
+<h2> This is what Reddit on Rails would look like </h2>
 
 The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
 
@@ -10,6 +10,12 @@ The time is <%= Time.now.strftime("%l:%M %P on %B%e, %Y.") %>
     <% @links.each do |link| %>
       <li><h4><%= link_to truncate("#{link.title}", length: 50, separator: ' '), link_path(link.id) %></h4></li>
         <ul>
+          <li><%= link_to "+", votes_path(vote: {link_id: link.id, up: true}), method: :post %></li>
+          <li><%= link_to "-", votes_path(vote: {link_id: link.id, up: false}), method: :post %></li>
+          <li><%= "Total votes on this link: #{link.votes.count}" %></li>
+          <li><%= "Total UP votes on this link: #{link.votes.where(up: true).count}" %></li>
+          <li><%= "Total DOWN votes on this link: #{link.votes.where(up: false).count}" %></li>
+          <li><%= "Net votes on this link: #{link.votes.where(up: true).count -  link.votes.where(up: false).count}" %></li>
           <li><%= link_to 'comments', link %> | <%= "submitted #{time_ago_in_words(link.created_at)} ago by #{link.user.username}" %></li>
         </ul>
     <% end %>
