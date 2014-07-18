@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   end
   
   def create
-    @link = Link.new(link_params) #using link_params w/ private method for rails 4
+    @link = current_user.links.new(link_params) #using link_params w/ private method for rails 4
     
     respond_to do |format|
       if @link.save
@@ -28,7 +28,7 @@ class LinksController < ApplicationController
   private
   
   def link_params     # required for rails 4 instead of attr_accessible
-    params.require(:link).permit(:url, :title)
+    params.require(:link).permit(:url, :title, :user_id)
   end
   
   
