@@ -45,29 +45,36 @@
       </div>    
     </div>
 
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-
+    <%= content_for :sidebar do %>
+      <%= link_to "Add a link", new_link_path %>
+    <% end %>
 
     <div class="conatiner">
       <div class="row">
-        <div class="span3">
-          <h2>Sidebar?</h2>
-          SOME LOREMIPSUM
+        <div class="span1"></div>
+        <div class="span9">
+          <% [:notice, :error, :alert].each do |level| %>
+            <% unless flash[level].blank? %>
+              <div data-alert="alert" class="alert alert-<%= level %> fade in">
+                <a class="close" data-dismiss="alert" href="#">&times;</a>
+                <%= content_tag :p, flash[level] %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= yield %>
         </div>
-        <div class="span9"><%= yield %></div>
+        <% if content_for?(:sidebar) %>
+          <div class="span2">
+            <!-- div class="page-header"></div -->
+            <h2>Sidebar!</h2>
+            <%= yield :sidebar %>
+          </div>
+        <% end %>
       </div>
     </div>
     
         
 
-
-
-
-
-
-
   </body>
+  
 </html>
