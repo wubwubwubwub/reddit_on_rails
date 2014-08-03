@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    
     <meta charset="utf-8">
   
     <title>RedditOnRails</title>
@@ -15,10 +16,10 @@
     <script src="http://heroku.github.com/template-app-bootstrap/jquery-1.7.1.min.js"></script>
     <script src="http://heroku.github.com/template-app-bootstrap/jquery.replacetext.min.js"></script>
     
-    
   </head>
   
   <body>
+    
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -28,7 +29,7 @@
             <span class="icon-bar"></span>   
           </a>
           <a class="brand" href="/">Reddit On Rails!</a>
-          <div class="nav">
+          <div class="nav-collapse">
             <ul class="nav">
               <% if current_user.present? %> <!-- #user is logged in, show log out link -->
                 <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
@@ -45,8 +46,10 @@
       </div>    
     </div>
 
+
     <%= content_for :sidebar do %>
-      <%= link_to "Add a link", new_link_path %>
+      <%= link_to "Add a link", new_link_path %><br />
+      <%= link_to "Show all", root_path %>
     <% end %>
 
     <div class="conatiner">
@@ -73,8 +76,5 @@
       </div>
     </div>
     
-        
-
   </body>
-  
 </html>
